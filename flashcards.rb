@@ -86,16 +86,18 @@ class Game
 			begin 
 				print "Guess: "
 				answer = gets.chomp
-				if answer == flashcard.term
+				if answer.downcase == flashcard.term.downcase
 					puts "Correct!\n\n"
 					correct_count += 1
 				else
 					puts "Incorrect! Try again.\n\n"
 				end
-			end until answer == flashcard.term
+			end until answer.downcase == flashcard.term.downcase
 
 			flashcard_stack.remove_card!(flashcard)
 		end
+
+		puts "All flashcards have been answered correctly. =)\nThe End"
 	end
 end
 
