@@ -63,6 +63,9 @@ class FlashcardStack
 		@stack.delete(flashcard)
 	end
 
+	def length
+		@stack.length
+	end
 end
 
 
@@ -73,12 +76,26 @@ class Game
 
 		flashcard_stack.add_file("flashcard_samples.txt")
 
-		flashcard = flashcard_stack.get_random_card
+		puts "Welcome to Ruby Flash Cards. To play, just enter the correct term for each definition. Ready?\nGo! \n\n"
 
-		puts flashcard.definition
-		puts flashcard.term
+		correct_count = 0
+		while flashcard_stack.length > 0
+			flashcard = flashcard_stack.get_random_card
 
-		flashcard_stack.remove_card!(flashcard)
+			puts "#{correct_count}/#{flashcard_stack.length} correct \nDefinition: \n#{flashcard.definition}"
+			begin 
+				print "Guess: "
+				answer = gets.chomp
+				if answer == flashcard.term
+					puts "Correct!\n\n"
+					correct_count += 1
+				else
+					puts "Incorrect! Try again.\n\n"
+				end
+			end until answer == flashcard.term
+
+			flashcard_stack.remove_card!(flashcard)
+		end
 	end
 end
 
