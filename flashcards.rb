@@ -1,6 +1,6 @@
 #Flashcard class
 class Flashcard
-	attr_reader :definition, :description
+	attr_reader :definition, :term
 	# attr_writer :complete
 	def initialize(definition, term)
 		@definition = definition
@@ -59,21 +59,27 @@ class FlashcardStack
 		# tempflashcard.complete!
 	end
 
-	def remove_card(flashcard)
+	def remove_card!(flashcard)
 		@stack.delte(flashcard)
 	end
 
 end
 
 
-flashcard_stack = FlashcardStack.new
+class Game
 
-flashcard_stack.add_file("flashcard_samples.txt")
+	def self.run
+		flashcard_stack = FlashcardStack.new
 
-flashcard = flashcard_stack.get_random_card
+		flashcard_stack.add_file("flashcard_samples.txt")
 
-puts flashcard.definition
-puts flashcard.term
+		flashcard = flashcard_stack.get_random_card
 
+		puts flashcard.definition
+		puts flashcard.
 
+		flashcard_stack.remove_card!(flashcard)
+	end
+end
 
+Game.run
