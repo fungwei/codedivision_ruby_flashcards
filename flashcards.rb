@@ -39,7 +39,7 @@ class FlashcardStack
 				definition = line
 				# puts definition
 			when 1
-				term = line
+				term = line.gsub("\n","")
 				# puts term
 				flashcard = Flashcard.new(definition, term)
 				add_flashcard(flashcard)
@@ -60,7 +60,7 @@ class FlashcardStack
 	end
 
 	def remove_card!(flashcard)
-		@stack.delte(flashcard)
+		@stack.delete(flashcard)
 	end
 
 end
@@ -76,7 +76,7 @@ class Game
 		flashcard = flashcard_stack.get_random_card
 
 		puts flashcard.definition
-		puts flashcard.
+		puts flashcard.term
 
 		flashcard_stack.remove_card!(flashcard)
 	end
